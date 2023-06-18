@@ -30,6 +30,7 @@ class PolyRegression:
         if response.status_code == 200:
             # Parse the JSON response into a DataFrame
             self.data = pd.DataFrame(response.json())
+            return self.data
         else:
             print(f"Failed to get data from Tiingo API. Status code: {response.status_code}. Response: {response.content}")
 
@@ -61,3 +62,5 @@ class PolyRegression:
         plt.xlabel('Date')
         plt.ylabel('Stock CLOSE Price')
         plt.show()
+
+
