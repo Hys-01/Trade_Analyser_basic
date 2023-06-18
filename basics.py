@@ -1,4 +1,4 @@
-import requests
+'''import requests
 import pandas as pd
 from config import TIINGO_API_KEY
 
@@ -57,4 +57,4 @@ plt.plot(X, model.predict(poly.fit_transform(X)), color='blue')
 plt.title('Polynomial Prediction')
 plt.xlabel('Date')
 plt.ylabel('Stock CLOSE Price')
-plt.show()
+plt.show()'''
