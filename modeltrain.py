@@ -47,7 +47,7 @@ class PolyRegression:
         X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=0)
 
         # Transform matrix of features into matrix of higher order (polynomial) features
-        self.poly = PolynomialFeatures(degree = 6)
+        self.poly = PolynomialFeatures(degree = 7)
         X_poly = self.poly.fit_transform(X_train)
 
         # Fit into Linear Regression model

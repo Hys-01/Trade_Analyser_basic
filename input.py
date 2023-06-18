@@ -31,5 +31,5 @@ if __name__ == "__main__":
         print('its either YES or NO.')  
     
     symbol='NVDA'
-    #execute(start_date, end_date, symbol)
+    execute(start_date, end_date, symbol)
     #trading_volume(start_date, end_date, symbol)
