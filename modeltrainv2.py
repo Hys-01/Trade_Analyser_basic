@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from config import TIINGO_API_KEY
+from config import API_KEY
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split 
@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn import metrics
 
-class PolyRegression: 
+class PolyRegressionv2: 
     def __init__(self, symbol, api_key):
         self.symbol = symbol
         self.api_key = api_key
@@ -19,20 +19,19 @@ class PolyRegression:
         self.poly = None
 
     def retrieve_data(self, start_date, end_date):
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Token {self.api_key}'
-        }
-        url = f'https://api.tiingo.com/tiingo/fundamentals/<ticker>/statements?startDate=2019-06-30'
-
-        response = requests.get(url, headers=headers)
+        # FMP API doesn't need headers, so we remove them
+        # Make sure your start and end dates are in the YYYY-MM-DD format
+        url = f"https://financialmodelingprep.com/api/v3/historical-price-full/{self.symbol}?from={start_date}&to={end_date}&apikey={self.api_key}"
+        
+        response = requests.get(url)
         if response.status_code == 200:
             # Parse the JSON response into a DataFrame
-            self.data = pd.DataFrame(response.json())
+            # Note that FMP nests the historical data under the 'historical' key
+            self.data = pd.DataFrame(response.json()['historical'])
             return self.data
         else:
-            print(f"Failed to get data from Tiingo API. Status code: {response.status_code}. Response: {response.content}")
-
+            print(f"Failed to get data from FMP API. Status code: {response.status_code}. Response: {response.content}")
+    
     def prepare_data(self):
         df = self.data
         df['date'] = pd.to_datetime(df['date'])
@@ -47,7 +46,7 @@ class PolyRegression:
         X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=0)
 
         # Transform matrix of features into matrix of higher order (polynomial) features
-        self.poly = PolynomialFeatures(degree = 6)
+        self.poly = PolynomialFeatures(degree = 7)
         X_poly = self.poly.fit_transform(X_train)
 
         # Fit into Linear Regression model
