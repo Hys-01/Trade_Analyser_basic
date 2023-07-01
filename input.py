@@ -7,8 +7,17 @@ def execute(start_date, end_date, symbol):
     poly_model.prepare_data()
     poly_model.train_model()
     poly_model.show_model()
-    mavg = poly_model.calculate_moving_averages()
-    print (mavg)
+
+    userinput2 = input("Would you like to see the moving averages? (y/n): ")
+    if userinput2.upper() == 'Y': 
+        moving_averages()
+
+
+def moving_averages():
+    mavg_data = PolyRegressionv2(symbol=symbol, api_key=API_KEY)
+    mavg_data.retrieve_data(start_date=start_date, end_date=end_date)
+    mavg = mavg_data.calculate_moving_averages()
+    print(mavg)
 
 def trading_volume(start_date, end_date, symbol): 
     tvol = PolyRegressionv2(symbol=symbol, api_key=API_KEY)

@@ -67,6 +67,6 @@ class PolyRegressionv2:
         self.data['medium m.avg'] = self.data['close'].rolling(window_long_1).mean()
         self.data['long m.avg'] = self.data['close'].rolling(window_long_2).mean()
         self.data['very long m.avg'] = self.data['close'].rolling(window_long_3).mean()
-        return self.data[['very short m.avg', 'short m.avg', 'medium m.avg', 'long m.avg', 'very long m.avg']]
+        return self.data[['date','very short m.avg', 'short m.avg', 'medium m.avg', 'long m.avg', 'very long m.avg']]
 
 
