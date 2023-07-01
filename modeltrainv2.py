@@ -61,4 +61,9 @@ class PolyRegressionv2:
         plt.ylabel('Stock CLOSE Price')
         plt.show()
 
+    def calculate_moving_averages(self, window_short_1=5, window_short_2=20):
+        self.data['very short m.avg'] = self.data['close'].rolling(window_short_1).mean()
+        self.data['short m.avg'] = self.data['close'].rolling(window_short_2).mean()
+        return self.data
+
 
