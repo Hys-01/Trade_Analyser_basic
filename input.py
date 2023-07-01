@@ -8,7 +8,7 @@ def execute(start_date, end_date, symbol):
     poly_model.train_model()
     poly_model.show_model()
     mavg = poly_model.calculate_moving_averages()
-    print(mavg)
+    print (mavg)
 
 def trading_volume(start_date, end_date, symbol): 
     tvol = PolyRegressionv2(symbol=symbol, api_key=API_KEY)
