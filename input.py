@@ -1,8 +1,8 @@
-from modeltrainv2 import PolyRegressionv2
+from MovingAverage import MovingAverage
 from config import API_KEY
 from datetime import date, datetime
 def execute(start_date, end_date, symbol): 
-    poly_model = PolyRegressionv2(symbol=symbol, api_key=API_KEY)
+    poly_model = MovingAverage(symbol=symbol, api_key=API_KEY)
     poly_model.retrieve_data(start_date=start_date, end_date=end_date)
     poly_model.prepare_data()
     poly_model.train_model()
@@ -14,13 +14,13 @@ def execute(start_date, end_date, symbol):
 
 
 def moving_averages():
-    mavg_data = PolyRegressionv2(symbol=symbol, api_key=API_KEY)
+    mavg_data = MovingAverage(symbol=symbol, api_key=API_KEY)
     mavg_data.retrieve_data(start_date=start_date, end_date=end_date)
     mavg = mavg_data.calculate_moving_averages()
     print(mavg)
 
 def trading_volume(start_date, end_date, symbol): 
-    tvol = PolyRegressionv2(symbol=symbol, api_key=API_KEY)
+    tvol = MovingAverage(symbol=symbol, api_key=API_KEY)
     data = tvol.retrieve_data(start_date=start_date, end_date=end_date)
 
     if data is None: 
@@ -29,7 +29,7 @@ def trading_volume(start_date, end_date, symbol):
         print(data['volume'])
 
 def retrieve_data(start_date, end_date, symbol): 
-    datac = PolyRegressionv2(symbol=symbol, api_key=API_KEY)
+    datac = MovingAverage(symbol=symbol, api_key=API_KEY)
     data = datac.retrieve_data(start_date=start_date, end_date=end_date)
     return data
 

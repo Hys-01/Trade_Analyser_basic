@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from config import TIINGO_API_KEY
+from config import API_KEY
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split 
@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn import metrics
 
-class PolyRegression: 
+class MovingAverage: 
     def __init__(self, symbol, api_key):
         self.symbol = symbol
         self.api_key = api_key
@@ -23,7 +23,7 @@ class PolyRegression:
             'Content-Type': 'application/json',
             'Authorization': f'Token {self.api_key}'
         }
-        url = f'https://api.tiingo.com/tiingo/fundamentals/<ticker>/statements?startDate=2019-06-30'
+        url = f'https://api.tiingo.com/tiingo/daily/{self.symbol}/prices?startDate={start_date}&endDate={end_date}'
 
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
@@ -43,23 +43,15 @@ class PolyRegression:
         self.y = df['close'].values.reshape(-1,1)
         return self.X, self.y
 
-    def train_model(self):
-        X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, test_size=0.2, random_state=0)
 
-        # Transform matrix of features into matrix of higher order (polynomial) features
-        self.poly = PolynomialFeatures(degree = 6)
-        X_poly = self.poly.fit_transform(X_train)
+    def calculate_moving_averages(self, window_short_1=5, window_short_2=20,  window_long_1=50, window_long_2=100, window_long_3=200):
+        self.data['very short m.avg'] = self.data['close'].rolling(window_short_1).mean()
+        self.data['short m.avg'] = self.data['close'].rolling(window_short_2).mean()
+        self.data['medium m.avg'] = self.data['close'].rolling(window_long_1).mean()
+        self.data['long m.avg'] = self.data['close'].rolling(window_long_2).mean()
+        self.data['very long m.avg'] = self.data['close'].rolling(window_long_3).mean()
+        return self.data[['date','very short m.avg', 'short m.avg', 'medium m.avg', 'long m.avg', 'very long m.avg']]
 
-        # Fit into Linear Regression model
-        self.model = LinearRegression()
-        self.model.fit(X_poly, y_train)
 
-    def show_model(self):
-        plt.scatter(self.X, self.y, color='grey', marker='.')
-        plt.plot(self.X, self.model.predict(self.poly.fit_transform(self.X)), color='blue')
-        plt.title('Polynomial Prediction')
-        plt.xlabel('Date')
-        plt.ylabel('Stock CLOSE Price')
-        plt.show()
 
 
