@@ -81,6 +81,7 @@ class MovingAverage:
         self.data['very long m.avg'] = self.data['close'].rolling(window_long_3).mean()
         return self.data[['date','close','very short m.avg', 'short m.avg', 'medium m.avg', 'long m.avg', 'very long m.avg']]
 
-
+    def show_graph(self):
+        pass
 
 
