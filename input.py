@@ -1,23 +1,18 @@
 from MovingAverage import MovingAverage
 from config import API_KEY
 from datetime import date, datetime
-def execute(start_date, end_date, symbol): 
-    poly_model = MovingAverage(symbol=symbol, api_key=API_KEY)
-    poly_model.retrieve_data(start_date=start_date, end_date=end_date)
-    poly_model.prepare_data()
-    poly_model.train_model()
-    poly_model.show_model()
+def moving_averages(start_date, end_date, symbol):
+    '''
+    This function receives input from the user for lower and upper bound for data. 
 
-    userinput2 = input("Would you like to see the moving averages? (y/n): ")
-    if userinput2.upper() == 'Y': 
-        moving_averages()
+    outputs: 
+        mavg: data with short and long term moving averages for each date in the data. 
 
-
-def moving_averages():
-    mavg_data = MovingAverage(symbol=symbol, api_key=API_KEY)
-    mavg_data.retrieve_data(start_date=start_date, end_date=end_date)
+    '''
+    mavg_data = MovingAverage(symbol, api_key=API_KEY)
+    mavg_data.retrieve_data(start_date, end_date)
     mavg = mavg_data.calculate_moving_averages()
-    print(mavg)
+    return mavg
 
 def trading_volume(start_date, end_date, symbol): 
     tvol = MovingAverage(symbol=symbol, api_key=API_KEY)
@@ -38,6 +33,7 @@ if __name__ == "__main__":
     if datetime.strptime(start_date, '%Y-%m-%d') is False: 
         print('[]')
 
+    # probe user input, if they want the upper bound of data to be today's date or custom.
     user_todayyn = input("Do you wish to retreive data up to today's date? (y/n): ")
     if user_todayyn.upper() == 'Y': 
         end_date = date.today()
@@ -47,9 +43,10 @@ if __name__ == "__main__":
         print('its either YES or NO.')  
     
     symbol='TSLA'
-    execute(start_date, end_date, symbol)
+    mavgfunction = moving_averages(start_date, end_date, symbol)
+    print(mavgfunction)
     #trading_volume(start_date, end_date, symbol)
 
 
     #df = retrieve_data(start_date, end_date, symbol)
-    #print(max(df['high']))
+    #print(df)
