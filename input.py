@@ -9,10 +9,12 @@ def moving_averages(start_date, end_date, symbol):
         mavg: data with short and long term moving averages for each date in the data. 
 
     '''
-    mavg_data = MovingAverage(symbol, api_key=API_KEY)
-    mavg_data.retrieve_data(start_date, end_date)
-    mavg = mavg_data.calculate_moving_averages()
-    return mavg
+
+    ma = MovingAverage(symbol, API_KEY)
+    ma.retrieve_data(start_date, end_date)
+    ma.prepare_data()
+    ma.calculate_moving_averages()
+    return ma
 
 def trading_volume(start_date, end_date, symbol): 
     tvol = MovingAverage(symbol=symbol, api_key=API_KEY)

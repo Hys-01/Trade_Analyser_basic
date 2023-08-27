@@ -38,7 +38,6 @@ class MovingAverage:
         if response.status_code == 200:
             # Parse the JSON response into a DataFrame if the response is valid
             self.data = pd.DataFrame(response.json())
-            return self.data
         else:
             # if there is an error retrieving the data
             print(f"Failed to get data from Tiingo API. Status code: {response.status_code}. Response: {response.content}")
@@ -54,7 +53,6 @@ class MovingAverage:
         # Set X and y for future model training
         self.X = df['date_delta'].values.reshape(-1,1)
         self.y = df['close'].values.reshape(-1,1)
-        return self.X, self.y
 
 
     def calculate_moving_averages(self, window_short_1=5, window_short_2=20,  window_long_1=50, window_long_2=100, window_long_3=200):
@@ -79,6 +77,7 @@ class MovingAverage:
         self.data['medium m.avg'] = self.data['close'].rolling(window_long_1).mean()
         self.data['long m.avg'] = self.data['close'].rolling(window_long_2).mean()
         self.data['very long m.avg'] = self.data['close'].rolling(window_long_3).mean()
+        print(self.data[['date','close','very short m.avg', 'short m.avg', 'medium m.avg', 'long m.avg', 'very long m.avg']])
         return self.data[['date','close','very short m.avg', 'short m.avg', 'medium m.avg', 'long m.avg', 'very long m.avg']]
 
     def show_graph(self):

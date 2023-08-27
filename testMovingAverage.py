@@ -20,6 +20,6 @@ def test_very_short_mavg(start_date, end_date, symbol):
 
 if __name__ == "__main__": 
     symbol='TSLA'
-    mavgfunction = moving_averages("2020-01-01", date.today(), symbol)
+    mavgfunction = test_very_short_mavg("2020-01-01", date.today(), symbol)
     print(mavgfunction)
 
