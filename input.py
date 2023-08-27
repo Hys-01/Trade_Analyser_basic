@@ -2,6 +2,14 @@ from MovingAverage import MovingAverage
 from config import API_KEY
 from datetime import date, datetime
 def user_input_dates(): 
+    '''
+    Retrieves custom boundaries for data from user. 
+    Probes for lower bound date, and upper bound date
+
+    outputs: 
+        start_date: string that represents lower bnound for data
+        end_date: string that represents upper bound for data
+    '''
     start_date = input('START date of data (yyyy-mm-dd): ')  
     try:
         datetime.strptime(start_date, "%Y-%m-%d")
@@ -19,12 +27,13 @@ def user_input_dates():
 
     return start_date, end_date
 
+
 def moving_averages(start_date, end_date, symbol):
     '''
     This function receives input from the user for lower and upper bound for data. 
 
     outputs: 
-        mavg: data with short and long term moving averages for each date in the data. 
+        ma: self.data including the moving average columns. 
 
     '''
     ma = MovingAverage(symbol, API_KEY)       # create a MovingAverage object
@@ -33,23 +42,10 @@ def moving_averages(start_date, end_date, symbol):
     ma.calculate_moving_averages()            # calcualte all periods moving averages
     return ma                           
 
-'''def trading_volume(start_date, end_date, symbol): 
-    tvol = MovingAverage(symbol=symbol, api_key=API_KEY)
-    data = tvol.retrieve_data(start_date=start_date, end_date=end_date)
-
-    if data is None: 
-        print('ERROR')
-    else:
-        print(data['volume'])
-
-def retrieve_data(start_date, end_date, symbol): 
-    datac = MovingAverage(symbol=symbol, api_key=API_KEY)
-    data = datac.retrieve_data(start_date=start_date, end_date=end_date)
-    return data'''
-
 if __name__ == "__main__":
     start_date, end_date = user_input_dates()
     
     symbol='TSLA'
     mavgfunction = moving_averages(start_date, end_date, symbol)
+
 
