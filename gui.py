@@ -1,18 +1,34 @@
-import customtkinter as ctk
+import customtkinter as customtkinter
 
-class App(ctk.CTk):
+customtkinter.set_default_color_theme("green")
+
+class MyTabView(customtkinter.CTkTabview):
+    def __init__(self, master, **kwargs):
+        super().__init__(master, **kwargs)
+
+        # create tabs
+        self.add("tab 1")
+        self.add("tab 2")
+
+        # add widgets on tabs
+        self.label = customtkinter.CTkLabel(master=self.tab("tab 1"))
+        self.label.grid(row=0, column=0, padx=20, pady=10)
+
+
+class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
-        self.geometry("1000x600")
-        self.title("CTk test")
 
-        # add widgets to app
-        self.button = ctk.CTkButton(self, command=self.button_click)
-        self.button.grid(row=0, column=0, padx=20, pady=10)
+        self.grid_rowconfigure(0, weight=1)  # configure grid system
+        self.grid_columnconfigure(0, weight=1)
 
-    # add methods to app
-    def button_click(self):
-        print("button click")
+        self.geometry("600x500")
+        self.title("CTk example")
+        
+        
+        # Tabview WIDGET 
+        self.tab_view = MyTabView(master=self)
+        self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
 
 app = App()
