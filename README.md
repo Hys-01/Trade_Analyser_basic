@@ -2,7 +2,7 @@
 
 Built as a personal project. Retrieves stock history from a selected company and analyses it. 
 
-Retreives data from FINANCIAL MODELLING PREP API    https://site.financialmodelingprep.com/developer/docs/ 
+Retreives data from TIINGO API https://app.tiingo.com/data/api
 
 Python class MovingAverage gets the moving averages based on closing prices for periods of 5, 20, 50, 100, 200 days. 
 
