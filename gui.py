@@ -7,13 +7,13 @@ class MyTabView(customtkinter.CTkTabview):
         super().__init__(master, **kwargs)
 
         # Tab creation with .add
-        self.add("t1")
-        self.add("t2")
+        self.add("Menu")
+        self.add("Graph")
 
         # add widgets on tabs
 
         # Label widget  
-        self.label = customtkinter.CTkLabel(master=self.tab("t1"))
+        self.label = customtkinter.CTkLabel(master=self.tab("Menu"))
 
         # on the grid, can pad on x or y direction; unsure about row/column
         self.label.grid(row=0, column=0, padx=20, pady=10)
@@ -27,7 +27,7 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
 
         self.geometry("800x800")    # W x H
-        self.title("CTk example")
+        self.title("Trade Analyser Draft")
         
         
         # Tabview WIDGET 
