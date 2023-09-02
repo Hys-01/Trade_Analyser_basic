@@ -1,4 +1,5 @@
 import customtkinter as customtkinter
+import matplotlib as plt
 
 customtkinter.set_default_color_theme("green")
 
@@ -17,6 +18,10 @@ class MyTabView(customtkinter.CTkTabview):
 
         # on the grid, can pad on x or y direction; unsure about row/column
         self.label.grid(row=0, column=0, padx=20, pady=10)
+
+    def tabGraph(self): 
+        pass
+    
 
 
 class App(customtkinter.CTk):
