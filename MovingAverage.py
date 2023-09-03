@@ -1,9 +1,8 @@
 import requests
 import pandas as pd
-from config import API_KEY
 import numpy as np
 
-def retrieve_data(self, start_date, end_date):
+def retrieve_data(start_date, end_date, symbol, API_KEY):
     '''
     Retrieves data from the TIIGO API and turns it into a dataframe.
 
@@ -15,17 +14,19 @@ def retrieve_data(self, start_date, end_date):
     '''
     headers = {
         'Content-Type': 'application/json',
-        'Authorization': f'Token {self.api_key}'
+        'Authorization': f'Token {"8f383b0b834c0cd9f369dc467f5ffa439e0c37de"}'
     }
-    url = f'https://api.tiingo.com/tiingo/daily/{self.symbol}/prices?startDate={start_date}&endDate={end_date}'
+    url = f'https://api.tiingo.com/tiingo/daily/{symbol}/prices?startDate={start_date}&endDate={end_date}'
+    response = requests.get(url, headers)
 
-    response = requests.get(url, headers=headers)
+    data = None
     if response.status_code == 200:
         # Parse the JSON response into a DataFrame if the response is valid
         data = pd.DataFrame(response.json())
     else:
         # if there is an error retrieving the data
         print(f"Failed to get data from Tiingo API. Status code: {response.status_code}. Response: {response.content}")
+    
     return data
 
 def prepare_data(data):

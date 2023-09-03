@@ -1,4 +1,4 @@
-from MovingAverage import MovingAverage
+from MovingAverage import *
 from config import API_KEY
 from datetime import date, datetime
 def user_input_dates(): 
@@ -28,7 +28,7 @@ def user_input_dates():
     return start_date, end_date
 
 
-def moving_averages(start_date, end_date, symbol):
+def moving_averages(start_date, end_date, symbol, API_KEY):
     '''
     This function receives input from the user for lower and upper bound for data. 
 
@@ -36,16 +36,15 @@ def moving_averages(start_date, end_date, symbol):
         ma: self.data including the moving average columns. 
 
     '''
-    ma = MovingAverage(symbol, API_KEY)       # create a MovingAverage object
-    ma.retrieve_data(start_date, end_date)    # retrieve data using specified dates as bounds
-    ma.prepare_data()                         # prepare data
-    ma.calculate_moving_averages()            # calcualte all periods moving averages
-    return ma                           
+    df = retrieve_data(start_date, end_date, symbol, API_KEY)    # retrieve data using specified dates as bounds
+    df = prepare_data(df)                         # prepare data
+    df = calculate_moving_averages(df)            # calcualte all periods moving averages
+    return df                           
 
 if __name__ == "__main__":
     start_date, end_date = user_input_dates()
     
     symbol='TSLA'
-    mavgfunction = moving_averages(start_date, end_date, symbol)
+    mavgfunction = moving_averages(start_date, end_date, symbol, API_KEY)
 
 
