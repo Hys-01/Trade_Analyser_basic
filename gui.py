@@ -40,7 +40,6 @@ class MyTabView(customtkinter.CTkTabview):
 
         ax.scatter(x,y,label='Closing Prices', color='blue', marker='.')
 
-
         canvas = FigureCanvasTkAgg(fig, master=self.tab("Graph"))
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)

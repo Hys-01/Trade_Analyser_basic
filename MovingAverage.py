@@ -9,25 +9,33 @@ class MovingAverage:
 
     def retrieve_data(self, start_date, end_date, symbol):
         '''
-        Retrieves data from the TIIGO API and turns it into a dataframe.
+        Retrieves data from the Financial Modeling Prep API and turns it into a DataFrame.
 
         inputs: 
             start_date: the lower bound of the data
             end_date: upper bound of the data
+            symbol: the stock symbol or identifier
         '''
-        headers = {
-            'Content-Type': 'application/json',
-            'Authorization': f'Token {self.api_key}'
+        base_url = 'https://financialmodelingprep.com/api/v3'
+        endpoint = f'/historical-price-full/{symbol}'
+        params = {
+            'apikey': self.api_key,
+            'from': start_date,
+            'to': end_date,
         }
-        url = f'https://api.tiingo.com/tiingo/daily/{symbol}/prices?startDate={start_date}&endDate={end_date}'
-        response = requests.get(url, headers=headers)
+
+        response = requests.get(base_url + endpoint, params=params)
 
         if response.status_code == 200:
             # Parse the JSON response into a DataFrame if the response is valid
-            self.data = pd.DataFrame(response.json())
+            data = response.json()
+            if 'historical' in data:
+                self.data = pd.DataFrame(data['historical'])
+            else:
+                print(f"No historical data found for symbol {symbol}.")
         else:
             # if there is an error retrieving the data
-            print(f"Failed to get data from Tiingo API. Status code: {response.status_code}. Response: {response.content}")
+            print(f"Failed to get data from Financial Modeling Prep API. Status code: {response.status_code}. Response: {response.content}")
 
     def prepare_data(self):
         '''
