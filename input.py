@@ -9,7 +9,7 @@ def user_input_dates():
     outputs: 
         start_date: string that represents lower bnound for data
         end_date: string that represents upper bound for data
-    '''
+    
     start_date = input('START date of data (yyyy-mm-dd): ')  
     try:
         datetime.strptime(start_date, "%Y-%m-%d")
@@ -24,8 +24,8 @@ def user_input_dates():
         end_date = input('END date of data? (yyyy-mm-dd): ') 
     else: 
         print('its either YES or NO.')  
-
-    return start_date, end_date
+    '''
+    return '2022-01-01', '2023-01-01'
 
 
 def moving_averages(start_date, end_date, symbol, API_KEY):
