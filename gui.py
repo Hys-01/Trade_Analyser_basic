@@ -10,7 +10,6 @@ class MyTabView(customtkinter.CTkTabview):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
 
-
         # Tab creation with .add
         self.add("Menu")
         self.add("Graph")
@@ -19,12 +18,12 @@ class MyTabView(customtkinter.CTkTabview):
         self.tabMenu()
         self.tabGraph()
         
-
     def tabMenu(self): 
         self.label = customtkinter.CTkLabel(master=self.tab("Menu"))
         self.label.configure(text="MAIN MENU", padx=450, fg_color=('#00bb7c'), font=(None,20))
         # on the grid, can pad on x or y direction
-        self.label.grid(row=0, column=0, padx=20, pady=10)
+        self.label.grid(row=0, column=1, padx=20, pady=10)
+
 
     def tabGraph(self): 
         plt.style.use('_mpl-gallery')
