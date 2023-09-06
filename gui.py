@@ -33,8 +33,8 @@ class MyTabView(customtkinter.CTkTabview):
     def tabGraph(self): 
         '''
         template for any widget to be added into the 'Graph' tab. Will contain an interactive graph with toggle-able options.
-
         '''
+        
         # selecting a colour theme
         plt.style.use('seaborn-v0_8-pastel')
 
@@ -42,6 +42,9 @@ class MyTabView(customtkinter.CTkTabview):
         mdf = MA(API_KEY)
         mdf.retrieve_data('2020-01-01', '2023-01-01', 'AAPL')
         mdf.prepare_data()
+
+        windows = [5,20,50,100,200]
+        mdf.calculate_moving_averages(windows)
         
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots()
@@ -51,10 +54,21 @@ class MyTabView(customtkinter.CTkTabview):
         y = mdf.data['close']
         ax.scatter(x,y,label='Closing Prices', color='blue', marker='.')
 
+        # plot line graphs for each moving average
+        for period in windows: 
+            ax.plot(x, mdf.data[f'{period}-day m.avg'])
+
+        ax.legend()
+
         # DOC NEEDED FOR THIS. using old get_tk_widget from Tkinter. 
         canvas = FigureCanvasTkAgg(fig, master=self.tab("Graph"))
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
+        
+
+
+        
+
 
 
 
@@ -76,7 +90,7 @@ class App(customtkinter.CTk):
         self.geometry("800x800")    # W x H
 
         # setting the title of the app
-        self.title("Trade Analyser Draft")
+        self.title("Trade Analyser Basic")
         
         
         # Create the Tabview WIDGET as the main display of the app. 
