@@ -57,7 +57,7 @@ class MovingAverage:
         if self.data is not None:
             for window in windows:
                 # create a new column representing the moving averages (based off closing price) for each period value in windows
-                self.data[f'{window}-day m.avg'] = self.data['close'].rolling(window).mean()  
+                self.data[f'{window} day ma'] = self.data['close'].rolling(window).mean()  
 
         
 
