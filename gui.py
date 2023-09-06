@@ -20,6 +20,10 @@ class MyTabView(customtkinter.CTkTabview):
         self.tabGraph()
         
     def tabMenu(self): 
+        '''
+        template for any widget to be added into the 'Menu' tab. 
+
+        '''
         self.label = customtkinter.CTkLabel(master=self.tab("Menu"))
         self.label.configure(text="MAIN MENU", padx=450, fg_color=('#00bb7c'), font=(None,20))
         # on the grid, can pad on x or y direction
@@ -27,19 +31,27 @@ class MyTabView(customtkinter.CTkTabview):
 
 
     def tabGraph(self): 
+        '''
+        template for any widget to be added into the 'Graph' tab. Will contain an interactive graph with toggle-able options.
+
+        '''
+        # selecting a colour theme
         plt.style.use('seaborn-v0_8-pastel')
 
+        # retreives data and prepares it according to MovingAverage.py
         mdf = MA(API_KEY)
         mdf.retrieve_data('2020-01-01', '2023-01-01', 'AAPL')
         mdf.prepare_data()
         
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots()
+
+        # set x,y points, and show as scatterplot
         x = mdf.data['date']
         y = mdf.data['close']
-
         ax.scatter(x,y,label='Closing Prices', color='blue', marker='.')
 
+        # DOC NEEDED FOR THIS. using old get_tk_widget from Tkinter. 
         canvas = FigureCanvasTkAgg(fig, master=self.tab("Graph"))
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
@@ -48,17 +60,26 @@ class MyTabView(customtkinter.CTkTabview):
 
 
 class App(customtkinter.CTk):
+    '''
+    the main class to initiate and run the actual application. 
+    derives functionalities from parent method CTk
+
+    '''
     def __init__(self):
         super().__init__()
 
-        self.grid_rowconfigure(0, weight=1)  # configure grid system
+        # configure the grid system
+        self.grid_rowconfigure(0, weight=1)  
         self.grid_columnconfigure(0, weight=1)
 
+        # setting the size of the app window
         self.geometry("800x800")    # W x H
+
+        # setting the title of the app
         self.title("Trade Analyser Draft")
         
         
-        # Tabview WIDGET 
+        # Create the Tabview WIDGET as the main display of the app. 
         self.tab_view = MyTabView(master=self, width=800, height=700)    # can enter arguments for width/length of tab
         self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
