@@ -11,7 +11,8 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 2023 Plans (DD/MM): 
 
 
-- [ ] 25/08 - Graph each of these out along with actual closing prices and possibly interpret and advise user. 
+- [x] 25/08 - Graph each of the mavg out along with actual closing prices
+- [ ] possibly interpret and advise user baesd on these
 
 - [x] 27/08 - replace the terminal input setup with a proper gui app
 
