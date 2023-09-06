@@ -10,11 +10,11 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 2023 Plans: 
 
-25/08
-- [ ] Graph each of these out along with actual closing prices and possibly interpret and advise user. 
-27/08
-- [x] replace the terminal input setup with a proper gui app
-09/06
-- [ ] Add interactivity to graph choices. 
+
+- [ ] 25/08 - Graph each of these out along with actual closing prices and possibly interpret and advise user. 
+
+- [x] 27/08 - replace the terminal input setup with a proper gui app
+
+- [ ] 09/06 - Add interactivity to graph choices. 
 
 
