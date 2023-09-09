@@ -6,6 +6,7 @@ Retreives data from FINANCIAL MODELLING PREP -
     https://site.financialmodelingprep.com/developer/docs/
 
 Python class MovingAverage gets the moving averages for a chosen SYMBOL based on predefined windows/periods. gui file is template for the main gui and user interfaces and data displays, using CustomTkinter https://github.com/TomSchimansky/CustomTkinter
+    Using python appdesign to serve as a standalone executable app
 
 
 2023 Plans (MM/DD): 
@@ -16,10 +17,12 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [x] 08/27 - replace the terminal input setup with a proper gui app
 
-- [ ] 09/06 - Add interactivity to graph choices. 
+- [ABANDONED] 09/06 - Add interactivity to graph choices. 
 
 - [ ] 09/06 - add options for user input of date and symbol. Could do as toplevel window? 
 
 - [ ] 09/08 - add testing function to test moving average calculations
+
+- [ ] 09/10 - add EMAs
 
 
