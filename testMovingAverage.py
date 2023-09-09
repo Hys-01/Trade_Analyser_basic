@@ -15,11 +15,13 @@ def test_data(start_date, end_date, symbol):
     '''
     mavg_data = MovingAverage(api_key=API_KEY)
     mavg_data.retrieve_data(start_date, end_date, symbol)
+    mavg_data.prepare_data()
     mavg_data.calculate_moving_averages()
 
-    a = mavg_data.data
+    a = mavg_data.data['date']
+    print(type(a))
 
-    print(a['date'])
+
 
 
 if __name__ == "__main__": 
