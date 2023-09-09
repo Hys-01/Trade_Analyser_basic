@@ -13,7 +13,7 @@ class MyTabView(customtkinter.CTkTabview):
 
         # Tab creation with .add
         self.add("Menu")
-        self.add("Graph")
+        self.add("Simple MA")
 
         # add widgets on tabs
         self.tabMenu()
@@ -40,11 +40,11 @@ class MyTabView(customtkinter.CTkTabview):
 
         # retreives data and prepares it according to MovingAverage.py
         mdf = MA(API_KEY)
-        mdf.retrieve_data('2020-01-01', '2023-01-01', 'AAPL')
+        mdf.retrieve_data('2023-01-01', '2023-09-01', 'AAPL')
         mdf.prepare_data()
 
         windows = [5,20,50,100,200]
-        mdf.calculate_moving_averages(windows)
+        mdf.simple_moving_averages(windows)
         
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots()
@@ -62,7 +62,7 @@ class MyTabView(customtkinter.CTkTabview):
         ax.legend()
 
         # DOC NEEDED FOR THIS. using old get_tk_widget from Tkinter. 
-        canvas = FigureCanvasTkAgg(fig, master=self.tab("Graph"))
+        canvas = FigureCanvasTkAgg(fig, master=self.tab("Simple MA"))
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
         

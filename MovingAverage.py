@@ -47,7 +47,7 @@ class MovingAverage:
 
 
 
-    def calculate_moving_averages(self, windows=[5, 20, 50, 100, 200]):
+    def simple_moving_averages(self, windows=[5, 20, 50, 100, 200]):
         '''
         Creates new columns in the dataframe.
         Closing prices are used to calculate moving averages.
@@ -62,9 +62,9 @@ class MovingAverage:
                 self.data[f'{window} day ma'] = self.data['close'].rolling(window).mean()  
 
                 # --- NOTE --- CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
-                self.test_calculate_ma(window)   
+                self.test_simple_ma(window)   
         
-    def test_calculate_ma(self, period):
+    def test_simple_ma(self, period):
         u = datetime.today()
         l = u - timedelta(days=period)
         print(l)
