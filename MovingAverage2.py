@@ -18,7 +18,7 @@ class MovingAverage:
         '''
         base_url = 'https://api.polygon.io'
         endpoint = f'/v2/aggs/ticker/{symbol}/range/1/day/{start_date}/{end_date}'
-    
+        
         params = {
             'apiKey': self.api_key,
         }
@@ -29,11 +29,7 @@ class MovingAverage:
             # Parse the JSON response into a DataFrame if the response is valid
             data = response.json()
             if 'results' in data:
-                df_data = data['results']
-                # Convert Unix Msec timestamp to datetime format
-                for item in df_data:
-                    item['t'] = pd.to_datetime(item['t'], unit='ms')
-                self.data = pd.DataFrame(df_data)
+                self.data = pd.DataFrame(data['results'])
             else:
                 print(f"No historical data found for symbol {symbol}.")
         else:
@@ -42,11 +38,14 @@ class MovingAverage:
 
     def prepare_data(self):
         '''
-        Prepares the dataframe by renaming columns and ensuring datetime format.
+        Prepares the dataframe by changing the date datatype to datetime format.
         '''
+
         if self.data is not None:
-            # Rename 't' column to 'date' for clarity
-            self.data.rename(columns={'t': 'date'}, inplace=True)
+            print(self.data)
+            #self.data['date'] = pd.to_datetime(self.data['date'], format='%Y-%m-%d')
+
+
 
     def calculate_moving_averages(self, windows=[5, 10, 50, 100, 200]):
         '''
@@ -60,9 +59,14 @@ class MovingAverage:
         if self.data is not None:
             for window in windows:
                 # create a new column representing the moving averages (based off closing price) for each period value in windows
-                self.data[f'{window} day ma'] = self.data['c'].rolling(window).mean()  # 'c' is the close price in Polygon.io response
+                self.data[f'{window} day ma'] = self.data['close'].rolling(window).mean()  
 
+            #test_calculate_ma()
+        
     def test_calculate_ma(self):
         pass
+
+        
+
 
 

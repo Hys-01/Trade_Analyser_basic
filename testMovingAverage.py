@@ -19,7 +19,7 @@ def test_data(start_date, end_date, symbol):
     mavg_data.calculate_moving_averages()
 
     a = mavg_data.data['date']
-    print(type(a))
+    print((a))
 
 
 
