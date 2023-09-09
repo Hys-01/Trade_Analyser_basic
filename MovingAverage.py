@@ -1,6 +1,7 @@
 import requests
 import pandas as pd
 import numpy as np
+from datetime import date, datetime, timedelta
 
 class MovingAverage:
     def __init__(self, api_key):
@@ -60,9 +61,10 @@ class MovingAverage:
                 # create a new column representing the moving averages (based off closing price) for each period value in windows
                 self.data[f'{window} day ma'] = self.data['close'].rolling(window).mean()  
 
-            #test_calculate_ma()
+                # --- NOTE --- CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
+                self.test_calculate_ma(window)   
         
-    def test_calculate_ma(self):
+    def test_calculate_ma(self, period):
         end_date = datetime.today()
 
         # Calculate the start date by subtracting [period] days from today
