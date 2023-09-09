@@ -63,6 +63,9 @@ class MovingAverage:
             #test_calculate_ma()
         
     def test_calculate_ma(self):
-        pass
+        end_date = datetime.today()
+
+        # Calculate the start date by subtracting [period] days from today
+        start_date = end_date - timedelta(days=period)
 
         
