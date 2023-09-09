@@ -17,7 +17,9 @@ def test_data(start_date, end_date, symbol):
     mavg_data.retrieve_data(start_date, end_date, symbol)
     mavg_data.calculate_moving_averages()
 
-    print(mavg_data.data)
+    a = mavg_data.data
+
+    print(a['date'])
 
 
 if __name__ == "__main__": 

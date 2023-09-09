@@ -41,9 +41,11 @@ class MovingAverage:
         '''
         Prepares the dataframe by changing the date datatype to datetime format.
         '''
+        print(type(self.data.date), 'AAA')
         if self.data is not None:
-            self.data['date'] = pd.to_datetime(self.data['date'])
-            self.data['date_delta'] = (self.data['date'] - self.data['date'].min()) / np.timedelta64(1, 'D')
+            self.data['date'] = pd.to_datetime(self.data['date'], format='%Y-%m-%d')
+            print(type(self.data.date),'BBB')
+
 
     def calculate_moving_averages(self, windows=[5, 10, 50, 100, 200]):
         '''
