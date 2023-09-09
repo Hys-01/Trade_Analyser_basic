@@ -1,7 +1,7 @@
 import unittest
 from MovingAverage import MovingAverage
 from config import API_KEY
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 def test_data(start_date, end_date, symbol): 
     '''
@@ -20,6 +20,10 @@ def test_data(start_date, end_date, symbol):
 
     a = mavg_data.data['date']
     print((a))
+    
+
+    result_date = date.today() - timedelta(days=20)
+    print(result_date)
 
 
 

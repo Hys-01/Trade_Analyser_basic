@@ -47,7 +47,7 @@ class MovingAverage:
 
 
 
-    def calculate_moving_averages(self, windows=[5, 10, 50, 100, 200]):
+    def calculate_moving_averages(self, windows=[5, 20, 50, 100, 200]):
         '''
         Creates new columns in the dataframe.
         Closing prices are used to calculate moving averages.
