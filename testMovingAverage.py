@@ -19,7 +19,7 @@ def test_data(start_date, end_date, symbol):
     mavg_data.simple_moving_averages()
 
     a = mavg_data.data
-    print((a))
+
     
 
     result_date = date.today() - timedelta(days=20)

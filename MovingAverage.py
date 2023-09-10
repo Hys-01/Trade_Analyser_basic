@@ -45,6 +45,8 @@ class MovingAverage:
         if self.data is not None:
             self.data['date'] = pd.to_datetime(self.data['date'], format='%Y-%m-%d')
 
+        self.test_prepare()
+
 
 
     def simple_moving_averages(self, windows=[5, 20, 50, 100, 200]):
@@ -61,12 +63,32 @@ class MovingAverage:
                 # create a new column representing the moving averages (based off closing price) for each period value in windows
                 self.data[f'{window} day ma'] = self.data['close'].rolling(window).mean()  
 
-                # --- NOTE --- CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
-                self.test_simple_ma(window)   
+                # NOTE: CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
+                #self.test_simple_ma(window)   
+
+    def exp_moving_averages(self, windows=[3,8,13]):
+        pass
+
+
+    def test_prepare(self):
+        try:
+            # check the data type of the date column, ensure it is datetime not object
+            if type(self.data['date']) == type(datetime.strptime("2020-01-01", "%Y-%m-%d")):
+                return True
+            else: 
+                return False
+        except AttributeError:
+            # catch if the date column is NOT a pandas series
+            return False
+
+
         
     def test_simple_ma(self, period):
         u = datetime.today()
         l = u - timedelta(days=period)
-        print(l)
+
+        relevant = self.data[  (self.data['date']>=l)&(self.data['date'] <= u)  ]
+        manualma = (sum(relevant['close']))/(relevant['close'].count())
+        print(manualma, self.data[f'{period} day ma'])
 
         

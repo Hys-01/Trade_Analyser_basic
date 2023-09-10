@@ -17,12 +17,14 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [x] 08/27 - replace the terminal input setup with a proper gui app
 
-- [ABANDONED] 09/06 - Add interactivity to graph choices. 
+- [ ] 09/06 ABANDONED - Add interactivity to graph choices. 
 
 - [ ] 09/06 - add options for user input of date and symbol. Could do as toplevel window? 
 
-- [ ] 09/08 - add testing function to test moving average calculations
+- [ ] 09/08 ON HIATUS - add testing function to test moving average calculations
 
 - [ ] 09/10 - add EMAs
+
+- [ ] 09/10 - add testing to ensure data types are righjt
 
 
