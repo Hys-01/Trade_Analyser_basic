@@ -7,6 +7,32 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 customtkinter.set_default_color_theme("green")
 
+
+class App(customtkinter.CTk):
+    '''
+    the main class to initiate and run the actual application. 
+    derives functionalities from parent method CTk
+
+    '''
+    def __init__(self):
+        super().__init__()
+
+        # configure the grid system
+        self.grid_rowconfigure(0, weight=1)  
+        self.grid_columnconfigure(0, weight=1)
+
+        # setting the size of the app window
+        self.geometry("800x800")    # W x H
+
+        # setting the title of the app
+        self.title("Trade Analyser Basic")
+        
+        
+        # Create the Tabview WIDGET as the main display of the app. 
+        self.tab_view = MyTabView(master=self, width=800, height=700)    # can enter arguments for width/length of tab
+        self.tab_view.grid(row=0, column=0, padx=20, pady=20)
+
+        
 class MyTabView(customtkinter.CTkTabview):
     def __init__(self, master, **kwargs):
         super().__init__(master, **kwargs)
@@ -66,37 +92,6 @@ class MyTabView(customtkinter.CTkTabview):
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
         
-
-
-        
-
-
-
-
-
-class App(customtkinter.CTk):
-    '''
-    the main class to initiate and run the actual application. 
-    derives functionalities from parent method CTk
-
-    '''
-    def __init__(self):
-        super().__init__()
-
-        # configure the grid system
-        self.grid_rowconfigure(0, weight=1)  
-        self.grid_columnconfigure(0, weight=1)
-
-        # setting the size of the app window
-        self.geometry("800x800")    # W x H
-
-        # setting the title of the app
-        self.title("Trade Analyser Basic")
-        
-        
-        # Create the Tabview WIDGET as the main display of the app. 
-        self.tab_view = MyTabView(master=self, width=800, height=700)    # can enter arguments for width/length of tab
-        self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
 
 # running the app
