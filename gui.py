@@ -32,9 +32,16 @@ class App(customtkinter.CTk):
         self.tab_view = MyTabView(master=self, width=800, height=700)    # can enter arguments for width/length of tab
         self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
-        
+
 class MyTabView(customtkinter.CTkTabview):
     def __init__(self, master, **kwargs):
+        '''
+        initializes and sets up the tabs for the tabview widget
+
+        inputs: 
+            master: 
+            kwargs: 
+        '''
         super().__init__(master, **kwargs)
 
         # Tab creation with .add
