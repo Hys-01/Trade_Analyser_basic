@@ -89,7 +89,7 @@ class MyTabView(customtkinter.CTkTabview):
 
         # plot line graphs for each moving average
         for period in windows: 
-            ax.plot(x, mdf.data[f'{period} day ma'])
+            ax.plot(x, mdf.data[f'{period} day SMA'])
             ax.legend()
 
         ax.legend()

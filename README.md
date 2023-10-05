@@ -23,7 +23,7 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [ ] 09/08 ON HIATUS - add testing function to test moving average calculations
 
-- [ ] 09/10 - add EMAs
+- [x] 09/10 - add EMAs
 
 - [x] 09/10 - add testing to ensure data types are righjt
 

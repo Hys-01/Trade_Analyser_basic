@@ -63,7 +63,7 @@ class MovingAverage:
         if self.data is not None:
             for window in windows:
                 # create a new column representing the moving averages (based off closing price) for each period value in windows
-                self.data[f'{window} day ma'] = self.data['close'].rolling(window).mean()  
+                self.data[f'{window} day SMA'] = self.data['close'].rolling(window).mean()  
 
                 # NOTE: CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
                 #self.test_simple_ma(window)   
@@ -101,6 +101,6 @@ class MovingAverage:
 
         relevant = self.data[  (self.data['date']>=l)&(self.data['date'] <= u)  ]
         manualma = (sum(relevant['close']))/(relevant['close'].count())
-        print(manualma, self.data[f'{period} day ma'])
+        print(manualma, self.data[f'{period} day SMA'])
 
         
