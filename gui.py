@@ -47,10 +47,14 @@ class MyTabView(customtkinter.CTkTabview):
         # Tab creation with .add
         self.add("Menu")
         self.add("Graphs")
+        self.add('Summary')
+        self.add('SummarySRC')
 
         # add widgets on tabs
         self.tabMenu()
         self.tabGraph()
+        self.tabSummary() 
+        self.tabSummaryS()
         
     def tabMenu(self): 
         '''
@@ -101,7 +105,12 @@ class MyTabView(customtkinter.CTkTabview):
         canvas = FigureCanvasTkAgg(fig, master=self.tab("Graphs"))
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
-        
+    
+    def tabSummary(): 
+        pass 
+
+    def tabSummaryS(): 
+        pass
 
 
 # running the app
