@@ -44,6 +44,8 @@ class MovingAverage:
         '''
         if self.data is not None:
             self.data['date'] = pd.to_datetime(self.data['date'], format='%Y-%m-%d')
+        
+        self.data = self.data.sort_values(by='date')
 
         self.test_prepare()
 
@@ -65,6 +67,11 @@ class MovingAverage:
 
                 # NOTE: CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
                 #self.test_simple_ma(window)   
+
+                # using partial period averages for NaN blank values for x most recent rows for x moving average 
+                for i in range(window-1): 
+                    pass
+
 
     def exp_moving_averages(self, windows=[3,8,13]):
         pass
