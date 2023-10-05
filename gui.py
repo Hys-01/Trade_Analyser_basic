@@ -67,6 +67,8 @@ class MyTabView(customtkinter.CTkTabview):
         self.label.grid(row=0, column=1, padx=20, pady=10)
 
 
+
+
     def tabGraph(self): 
         '''
         template for any widget to be added into the 'Graph' tab. Will contain an interactive graph with toggle-able options.
@@ -106,10 +108,10 @@ class MyTabView(customtkinter.CTkTabview):
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
     
-    def tabSummary(): 
+    def tabSummary(self): 
         pass 
 
-    def tabSummaryS(): 
+    def tabSummaryS(self): 
         pass
 
 
