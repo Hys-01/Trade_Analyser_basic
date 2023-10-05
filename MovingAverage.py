@@ -68,13 +68,18 @@ class MovingAverage:
                 # NOTE: CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
                 #self.test_simple_ma(window)   
 
-                # using partial period averages for NaN blank values for x most recent rows for x moving average 
-                for i in range(window-1): 
-                    pass
+    def exp_moving_averages(self, windows=[5,8,13]):
+        '''
+        Creates new columns in the dataframe for exponential moving averages.
+        Closing prices are used to calculate EMAs.
 
-
-    def exp_moving_averages(self, windows=[3,8,13]):
-        pass
+        input:
+            windows: a list of values representing the periods
+        '''
+        if self.data is not None:
+            for window in windows:
+                # create a new column representing the EMA for each period value in windows
+                self.data[f'{window} day EMA'] = self.data['close'].ewm(span=window, adjust=False).mean()
 
 
     def test_prepare(self):
