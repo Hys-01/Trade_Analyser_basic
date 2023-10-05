@@ -25,6 +25,6 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [ ] 09/10 - add EMAs
 
-- [ ] 09/10 - add testing to ensure data types are righjt
+- [x] 09/10 - add testing to ensure data types are righjt
 
 
