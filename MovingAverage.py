@@ -51,7 +51,7 @@ class MovingAverage:
 
 
 
-    def simple_moving_averages(self, windows=[5, 20, 50, 100, 200]):
+    def simple_moving_averages(self, windows):
         '''
         Creates new columns in the dataframe.
         Closing prices are used to calculate moving averages.
@@ -68,7 +68,7 @@ class MovingAverage:
                 # NOTE: CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
                 #self.test_simple_ma(window)   
 
-    def exp_moving_averages(self, windows=[5,8,13]):
+    def exp_moving_averages(self, windows):
         '''
         Creates new columns in the dataframe for exponential moving averages.
         Closing prices are used to calculate EMAs.

@@ -46,7 +46,7 @@ class MyTabView(customtkinter.CTkTabview):
 
         # Tab creation with .add
         self.add("Menu")
-        self.add("Simple MA")
+        self.add("Graphs")
 
         # add widgets on tabs
         self.tabMenu()
@@ -76,8 +76,10 @@ class MyTabView(customtkinter.CTkTabview):
         mdf.retrieve_data('2023-01-01', '2023-09-01', 'AAPL')
         mdf.prepare_data()
 
-        windows = [5,20,50,100,200]
+        windows = [5,20,50]   # 100 and 200 are options as well idk
         mdf.simple_moving_averages(windows)
+        windows2 = [5,8,13]
+        mdf.exp_moving_averages(windows2)
         
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots()
@@ -90,12 +92,13 @@ class MyTabView(customtkinter.CTkTabview):
         # plot line graphs for each moving average
         for period in windows: 
             ax.plot(x, mdf.data[f'{period} day SMA'])
-            ax.legend()
+        for period in windows2: 
+            ax.plot(x, mdf.data[f'{period} day EMA'])
 
         ax.legend()
 
         # DOC NEEDED FOR THIS. using old get_tk_widget from Tkinter. 
-        canvas = FigureCanvasTkAgg(fig, master=self.tab("Simple MA"))
+        canvas = FigureCanvasTkAgg(fig, master=self.tab("Graphs"))
         canvas_widget = canvas.get_tk_widget()
         canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
         

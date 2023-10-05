@@ -27,4 +27,6 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [x] 09/10 - add testing to ensure data types are righjt
 
+- [ ] 10/05 - make new tab that suggests when to buy/sell based on certain 'crossings' of SMAs and EMAs
+
 
