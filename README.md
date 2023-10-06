@@ -29,7 +29,7 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [ ] 10/05 - make new tab that suggests when to buy/sell based on certain 'crossings' of SMAs and EMAs
 
-- [ ] 10/05 - make new tab that gives the explanation of summary 
+- [x] 10/05 - make new tab that gives the explanation of summary 
 
 - [ ] 10/05 - properly fill in Menu tab with descriptions of app and possibly buttons as shortcuts to tabs
 

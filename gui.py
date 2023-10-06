@@ -1,14 +1,15 @@
-import customtkinter as customtkinter
+import customtkinter as ctk
 import matplotlib.pyplot as plt
 from MovingAverage import MovingAverage as MA
 import numpy as np
 from config import API_KEY
+import pandas as pd 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg 
 
-customtkinter.set_default_color_theme("green")
+ctk.set_default_color_theme("green")
 
 
-class App(customtkinter.CTk):
+class App(ctk.CTk):
     '''
     the main class to initiate and run the actual application. 
     derives functionalities from parent method CTk
@@ -33,7 +34,7 @@ class App(customtkinter.CTk):
         self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
 
-class MyTabView(customtkinter.CTkTabview):
+class MyTabView(ctk.CTkTabview):
     def __init__(self, master, **kwargs):
         '''
         initializes and sets up the tabs for the tabview widget
@@ -61,7 +62,7 @@ class MyTabView(customtkinter.CTkTabview):
         template for any widget to be added into the 'Menu' tab. 
 
         '''
-        self.label = customtkinter.CTkLabel(master=self.tab("Menu"))
+        self.label = ctk.CTkLabel(master=self.tab("Menu"))
         self.label.configure(text="MAIN MENU", padx = "550", fg_color=('#00bb7c'), font=(None,20))
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=1, padx=20, pady=10)
@@ -83,7 +84,7 @@ class MyTabView(customtkinter.CTkTabview):
 
         # retreives data and prepares it according to MovingAverage.py
         mdf = MA(API_KEY)
-        mdf.retrieve_data('2023-01-01', '2023-10-04', 'AAPL')
+        mdf.retrieve_data('2023-01-01', pd.Timestamp.today().date(), 'AAPL')
         mdf.prepare_data()
 
         windows = [5,20,50]   # 100 and 200 are options as well idk
@@ -111,7 +112,7 @@ class MyTabView(customtkinter.CTkTabview):
         # DOC NEEDED FOR THIS. using old get_tk_widget from Tkinter. 
         canvas = FigureCanvasTkAgg(fig, master=self.tab("Graphs"))
         canvas_widget = canvas.get_tk_widget()
-        canvas_widget.pack(fill=customtkinter.BOTH, expand=True)
+        canvas_widget.pack(fill=ctk.BOTH, expand=True)
     
     def tabSummary(self): 
         pass 
@@ -157,7 +158,7 @@ Price vs. Moving Averages: The position of the price concerning its moving avera
 If the price is consistently above both the SMAs and EMAs, it's a strong bullish indicator and vice versa.
 
         '''
-        self.label = customtkinter.CTkLabel(master=self.tab("SummaryS"))
+        self.label = ctk.CTkLabel(master=self.tab("SummaryS"))
         self.label.configure(text=txt, fg_color=('beige'))
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=1, padx=20, pady=10)
