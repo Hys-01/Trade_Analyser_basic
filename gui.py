@@ -22,14 +22,14 @@ class App(customtkinter.CTk):
         self.grid_columnconfigure(0, weight=1)
 
         # setting the size of the app window
-        self.geometry("800x800")    # W x H
+        self.geometry("1000x900")    # W x H
 
         # setting the title of the app
         self.title("Trade Analyser Basic")
         
         
         # Create the Tabview WIDGET as the main display of the app. 
-        self.tab_view = MyTabView(master=self, width=800, height=700)    # can enter arguments for width/length of tab
+        self.tab_view = MyTabView(master=self, width=1000, height=850)    # can enter arguments for width/length of tab
         self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
 
@@ -62,7 +62,7 @@ class MyTabView(customtkinter.CTkTabview):
 
         '''
         self.label = customtkinter.CTkLabel(master=self.tab("Menu"))
-        self.label.configure(text="MAIN MENU", padx=450, fg_color=('#00bb7c'), font=(None,20))
+        self.label.configure(text="MAIN MENU", padx = "550", fg_color=('#00bb7c'), font=(None,20))
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=1, padx=20, pady=10)
 
