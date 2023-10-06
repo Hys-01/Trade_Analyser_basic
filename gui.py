@@ -73,7 +73,9 @@ class MyTabView(customtkinter.CTkTabview):
 
     def tabGraph(self): 
         '''
-        template for any widget to be added into the 'Graph' tab. Will contain an interactive graph with toggle-able options.
+        template for any widget to be added into the 'Graph' tab. Will plot closing prices and moving averages. 
+
+        creates a MovingAverage Class, creates columns for simple and exponential moving averages. 
         '''
         
         # selecting a colour theme
@@ -81,7 +83,7 @@ class MyTabView(customtkinter.CTkTabview):
 
         # retreives data and prepares it according to MovingAverage.py
         mdf = MA(API_KEY)
-        mdf.retrieve_data('2023-01-01', '2023-09-01', 'AAPL')
+        mdf.retrieve_data('2023-01-01', '2023-10-04', 'AAPL')
         mdf.prepare_data()
 
         windows = [5,20,50]   # 100 and 200 are options as well idk
@@ -97,7 +99,7 @@ class MyTabView(customtkinter.CTkTabview):
         y = mdf.data['close']
         ax.scatter(x,y,label='Closing Prices', color='blue', marker='.')
 
-        # plot line graphs for each moving average
+        # plot line graphs for each moving average and their label/legends
         for period in windows: 
             ax.plot(x, mdf.data[f'{period} day SMA'], label = f'{period} day SMA')
         for period in windows2: 
@@ -115,6 +117,13 @@ class MyTabView(customtkinter.CTkTabview):
         pass 
 
     def tabSummaryS(self): 
+        '''
+        serves as an informative explanation for the outcome in the Summary tab. 
+
+        Specifically explains golden crosses and death crosses based on several example MAs. 
+        '''
+
+
         txt = '''
         Comparisons:
 Short-Term Analysis (Intra-day or few days):
