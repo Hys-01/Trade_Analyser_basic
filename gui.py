@@ -48,7 +48,7 @@ class MyTabView(customtkinter.CTkTabview):
         self.add("Menu")
         self.add("Graphs")
         self.add('Summary')
-        self.add('SummarySRC')
+        self.add('SummaryS')
 
         # add widgets on tabs
         self.tabMenu()
@@ -115,7 +115,38 @@ class MyTabView(customtkinter.CTkTabview):
         pass 
 
     def tabSummaryS(self): 
-        pass
+        txt = '''
+        Comparisons:
+Short-Term Analysis (Intra-day or few days):
+
+5-day SMA vs. 5-day EMA: Since both have the same period, comparing these will give you an idea of short-term price momentum. The EMA will react more quickly to price changes, so when the EMA crosses above the SMA, it can indicate increasing upward momentum, and vice versa.
+
+5-day EMA vs. 8-day EMA: Comparing these two EMAs can provide insights into very short-term momentum shifts.
+
+Medium-Term Analysis:
+
+20-day SMA vs. 13-day EMA: Comparing a medium-term SMA with a slightly faster EMA can indicate potential trend changes. For instance, if the 13-day EMA crosses above the 20-day SMA, it could signify a bullish trend.
+
+50-day SMA vs. 13-day EMA: When the faster 13-day EMA crosses the 50-day SMA, it can also indicate a change in the medium-term trend.
+
+Confirmation:
+
+20-day SMA vs. 50-day SMA: This is a classic comparison for trend confirmation. A "Golden Cross" occurs when the 20-day SMA (shorter-term) crosses above the 50-day SMA (longer-term), signaling a potential bullish trend. Conversely, a "Death Cross" occurs when the 20-day SMA crosses below the 50-day SMA, signaling a potential bearish trend.
+General Guidelines:
+Short-Term Crosses Long-Term: When a shorter-period moving average (whether SMA or EMA) crosses above a longer-period average, it's typically considered a bullish signal. When it crosses below, it's a bearish signal.
+
+Multiple Crossovers: If you observe multiple crossovers around the same time (e.g., 5-day EMA crossing both the 20-day SMA and 50-day SMA), it can serve as a stronger confirmation of a trend change.
+
+Price vs. Moving Averages: The position of the price concerning its moving averages can also provide insights. If the price is consistently above both the SMAs and EMAs, it's a strong bullish indicator and vice versa.
+
+        '''
+        self.label = customtkinter.CTkLabel(master=self.tab("SummaryS"))
+        self.label.configure(text=txt, padx=450, fg_color=('#00bb7c'), font=(None,20))
+        # on the grid, can pad on x or y direction
+        self.label.grid(row=0, column=1, padx=20, pady=10)
+
+        
+        
 
 
 # running the app
