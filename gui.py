@@ -66,6 +66,8 @@ class MyTabView(customtkinter.CTkTabview):
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=1, padx=20, pady=10)
 
+        
+
 
 
 
@@ -88,7 +90,7 @@ class MyTabView(customtkinter.CTkTabview):
         mdf.exp_moving_averages(windows2)
         
         # creating a scatterplot of closing prices
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(10,6))
 
         # set x,y points, and show as scatterplot
         x = mdf.data['date']
@@ -97,11 +99,12 @@ class MyTabView(customtkinter.CTkTabview):
 
         # plot line graphs for each moving average
         for period in windows: 
-            ax.plot(x, mdf.data[f'{period} day SMA'])
+            ax.plot(x, mdf.data[f'{period} day SMA'], label = f'{period} day SMA')
         for period in windows2: 
-            ax.plot(x, mdf.data[f'{period} day EMA'])
+            ax.plot(x, mdf.data[f'{period} day EMA'], label = f'{period} day EMA')
 
-        ax.legend()
+        fig.tight_layout()
+        ax.legend(loc='upper left')  # Position the legend outside the plot for clarity
 
         # DOC NEEDED FOR THIS. using old get_tk_widget from Tkinter. 
         canvas = FigureCanvasTkAgg(fig, master=self.tab("Graphs"))
