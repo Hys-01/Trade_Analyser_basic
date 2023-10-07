@@ -84,10 +84,10 @@ class MyTabView(ctk.CTkTabview):
 
         # retreives data and prepares it according to MovingAverage.py
         mdf = MA(API_KEY)
-        mdf.retrieve_data('2023-01-01', pd.Timestamp.today().date(), 'AAPL')
+        mdf.retrieve_data('2023-01-01', pd.Timestamp.today().date(), 'NVDA')
         mdf.prepare_data()
 
-        windows = [5,20,50]   # 100 and 200 are options as well idk
+        windows = [20,50]   # 100 and 200 are options as well idk
         mdf.simple_moving_averages(windows)
         windows2 = [5,8,13]
         mdf.exp_moving_averages(windows2)
@@ -159,7 +159,7 @@ If the price is consistently above both the SMAs and EMAs, it's a strong bullish
 
         '''
         self.label = ctk.CTkLabel(master=self.tab("SummaryS"))
-        self.label.configure(text=txt, fg_color=('beige'))
+        self.label.configure(text=txt)
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=1, padx=20, pady=10)
 
