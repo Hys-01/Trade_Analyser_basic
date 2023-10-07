@@ -13,8 +13,15 @@ class topInput(ctk.CTkToplevel):
         super().__init__(*args, **kwargs)
         self.geometry("500x400")
 
-        self.top = ctk.CTkTopLevel(master)
-        self.top.title("Select Time Period")
+        # set variable for value to be stored
+        self.timeperiod_var = ctk.StringVar(value="Day") 
+        # options in optionmenu 
+        self.timeperiod_ops = ["Day", "Month", "Year"]
+        self.menu = ctk.CTkOptionMenu(app, values=self.timeperiod_ops, variable=self.timeperiod_var)
+        self.menu.grid(row=0, column=0)
+
+        self.scale = ctk.CTkSlider(app, from_=0, to=365)
+        self.scale.grid(row=0, column=1)
 
 class App(ctk.CTk):
     '''
