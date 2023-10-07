@@ -14,12 +14,13 @@ class App(ctk.CTk):
     derives functionalities from parent method CTk
 
     '''
-    def __init__(self):
+    def __init__(self, sd, td):
         super().__init__()
 
         # configure the grid system
         self.grid_rowconfigure(0, weight=1)  
         self.grid_columnconfigure(0, weight=1)
+ 
 
         # setting the size of the app window
         self.geometry("1000x900")    # W x H
@@ -29,12 +30,12 @@ class App(ctk.CTk):
         
         
         # Create the Tabview WIDGET as the main display of the app. 
-        self.tab_view = MyTabView(master=self, width=1000, height=850)    # can enter arguments for width/length of tab
+        self.tab_view = MyTabView(master=self, width=1000, height=850, startD=sd, todayD=td)    # can enter arguments for width/length of tab
         self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
 
 class MyTabView(ctk.CTkTabview):
-    def __init__(self, master, **kwargs):
+    def __init__(self, master, startD, todayD, **kwargs):
         '''
         initializes and sets up the tabs for the tabview widget
 
@@ -43,7 +44,8 @@ class MyTabView(ctk.CTkTabview):
             kwargs: 
         '''
         super().__init__(master, **kwargs)
-
+        self.startD = startD
+        self.todayD = todayD
         # Tab creation with .add
         self.add("Menu")
         self.add("Graphs")
@@ -83,7 +85,7 @@ class MyTabView(ctk.CTkTabview):
 
         # retreives data and prepares it according to MovingAverage.py
         mdf = MA(API_KEY)
-        mdf.retrieve_data('2023-01-01', pd.Timestamp.today().date(), 'NVDA')
+        mdf.retrieve_data(self.startD, self.todayD, 'NVDA')
         mdf.prepare_data()
 
         windows = [20,50]   # 100 and 200 are options as well idk
@@ -167,5 +169,5 @@ If the price is consistently above both the SMAs and EMAs, it's a strong bullish
 
 
 # running the app
-app = App()
+app = App('2023-01-01', pd.Timestamp.today().date())
 app.mainloop()
