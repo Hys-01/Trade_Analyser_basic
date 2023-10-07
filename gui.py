@@ -68,6 +68,15 @@ class MyTabView(ctk.CTkTabview):
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=1, padx=20, pady=10)
 
+        datetext = f"start point: {self.startD} \n end point: {self.todayD}"
+        
+        self.labeldates = ctk.CTkLabel(master=self.tab("Menu"))
+        self.labeldates.configure(text=datetext, padx = "100", font=(None,20))
+        # on the grid, can pad on x or y direction
+        self.labeldates.grid(row=2, column=0, padx=20, pady=10)
+
+
+
         
 
 
