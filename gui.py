@@ -8,6 +8,13 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 ctk.set_default_color_theme("green")
 
+class topInput(ctk.CTkToplevel): 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.geometry("500x400")
+
+        self.top = ctk.CTkTopLevel(master)
+        self.top.title("Select Time Period")
 
 class App(ctk.CTk):
     '''
@@ -136,8 +143,8 @@ The EMA will react more quickly to price changes, so when the EMA crosses above 
 
 Medium-Term Analysis:
 
-20-day SMA vs. 13-day EMA: Comparing a medium-term SMA with a slightly faster EMA can indicate potential trend changes. 
-For instance, if the 13-day EMA crosses above the 20-day SMA, it could signify a bullish trend.
+**20-day SMA vs. 13-day EMA: Comparing a medium-term SMA with a slightly faster EMA can indicate potential trend changes. 
+For instance, if the 13-day EMA crosses above the 20-day SMA, it could signify a bullish trend**
 
 50-day SMA vs. 13-day EMA: When the faster 13-day EMA crosses the 50-day SMA, it can also indicate a change in the medium-term trend.
 
