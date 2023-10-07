@@ -8,28 +8,13 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 ctk.set_default_color_theme("green")
 
-class topInput(ctk.CTkToplevel): 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.geometry("500x400")
-
-        # set variable for value to be stored
-        self.timeperiod_var = ctk.StringVar(value="Day") 
-        # options in optionmenu 
-        self.timeperiod_ops = ["Day", "Month", "Year"]
-        self.menu = ctk.CTkOptionMenu(app, values=self.timeperiod_ops, variable=self.timeperiod_var)
-        self.menu.grid(row=0, column=0)
-
-        self.scale = ctk.CTkSlider(app, from_=0, to=365)
-        self.scale.grid(row=0, column=1)
-
 class App(ctk.CTk):
     '''
     the main class to initiate and run the actual application. 
     derives functionalities from parent method CTk
 
     '''
-    def __init__(self, start_date=None, end_date=None):
+    def __init__(self):
         super().__init__()
 
         # configure the grid system
@@ -46,21 +31,6 @@ class App(ctk.CTk):
         # Create the Tabview WIDGET as the main display of the app. 
         self.tab_view = MyTabView(master=self, width=1000, height=850)    # can enter arguments for width/length of tab
         self.tab_view.grid(row=0, column=0, padx=20, pady=20)
-
-    def on_submit(self):
-        days = int(self.days_var.get())
-        months = int(self.months_var.get()) * 30  # Rough approximation
-        years = int(self.years_var.get()) * 365  # Rough approximation
-
-        total_days = days + months + years
-
-        end_date = datetime.now().date()
-        start_date = end_date - timedelta(days=total_days)
-
-        # Here, you can use start_date and end_date to retrieve data
-        # and launch your main application
-        self.main_app = App()  # or App(start_date, end_date) if you want to pass the data
-        self.top.destroy()  # Close the initial window
 
 
 class MyTabView(ctk.CTkTabview):
@@ -195,7 +165,7 @@ If the price is consistently above both the SMAs and EMAs, it's a strong bullish
         
         
 
-root = ctk.CTk()
-root.withdraw()  # Hide the main window until needed
-initial_window = topInput(root)
-root.mainloop()
+
+# running the app
+app = App()
+app.mainloop()
