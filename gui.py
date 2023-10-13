@@ -97,10 +97,13 @@ class MyTabView(ctk.CTkTabview):
         mdf.retrieve_data(self.startD, self.todayD, 'NVDA')
         mdf.prepare_data()
 
-        windows = [20,50]   # 100 and 200 are options as well idk
-        mdf.simple_moving_averages(windows)
-        windows2 = [5,8,13]
-        mdf.exp_moving_averages(windows2)
+        windows = [20,50,100]   # 100 and 200 are options as well idk
+        
+        colours = []
+        mdf.simple_moving_averages(windows, colours)
+        windowsE = [5,8,13]
+        coloursE = []
+        mdf.exp_moving_averages(windowsE, colours)
         
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots(figsize=(10,6))
@@ -178,5 +181,5 @@ If the price is consistently above both the SMAs and EMAs, it's a strong bullish
 
 
 # running the app
-app = App('2023-01-01', pd.Timestamp.today().date())
+app = App('2021-01-01', pd.Timestamp.today().date())
 app.mainloop()
