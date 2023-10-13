@@ -40,7 +40,7 @@ class MovingAverage:
 
     def prepare_data(self):
         '''
-        Prepares the dataframe by changing the date datatype to datetime format.
+        Prepares the dataframe by changing the date datatype to datetime format and sorts by date
         '''
         if self.data is not None:
             self.data['date'] = pd.to_datetime(self.data['date'], format='%Y-%m-%d')

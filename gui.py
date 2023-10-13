@@ -62,6 +62,10 @@ class MyTabView(ctk.CTkTabview):
         '''
         template for any widget to be added into the 'Menu' tab. 
 
+        Creates label as heading 
+
+        Creates more labels showing the start and end dates used for the graphs
+
         '''
         self.label = ctk.CTkLabel(master=self.tab("Menu"))
         self.label.configure(text="MAIN MENU", padx = "550", fg_color=('#00bb7c'), font=(None,20))
@@ -97,6 +101,7 @@ class MyTabView(ctk.CTkTabview):
         mdf.retrieve_data(self.startD, self.todayD, 'NVDA')
         mdf.prepare_data()
 
+        # set desired windows and use them to create new moving average columns in the data
         windows_simple = [20,50,100]   # 100 and 200 are options as well idk
         mdf.simple_moving_averages(windows_simple)
         windows_exp = [5,8,13]
@@ -105,6 +110,7 @@ class MyTabView(ctk.CTkTabview):
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots(figsize=(10,6))
 
+        # retreive colour maps from matplotlib and create a list of set colours 
         cmap_simple = plt.get_cmap('GnBu')  
         cmap_exp = plt.get_cmap('YlOrRd')
         colours_simple = [cmap_simple(0.1*x) for x in range(3,10,3)]     # choose cmap___(0.3, 0.6, 0.9) 
@@ -115,7 +121,7 @@ class MyTabView(ctk.CTkTabview):
         y = mdf.data['close']
         ax.scatter(x,y,label='Closing Prices', color='blue', marker='.')
 
-        # plot line graphs for each moving average and their label/legends
+        # plot line graphs for each moving average and their label/legends and colours
         for colour, period in enumerate(windows_simple): 
             ax.plot(x, mdf.data[f'{period} day SMA'], label = f'{period} day SMA', color = colours_simple[colour])
         for colour, period in enumerate(windows_exp): 
