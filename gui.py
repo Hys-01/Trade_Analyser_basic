@@ -97,16 +97,15 @@ class MyTabView(ctk.CTkTabview):
         mdf.retrieve_data(self.startD, self.todayD, 'NVDA')
         mdf.prepare_data()
 
-        windows = [20,50,100]   # 100 and 200 are options as well idk
-        
-        colours = []
-        mdf.simple_moving_averages(windows, colours)
-        windowsE = [5,8,13]
-        coloursE = []
-        mdf.exp_moving_averages(windowsE, colours)
+        windows_simple = [20,50,100]   # 100 and 200 are options as well idk
+        mdf.simple_moving_averages(windows_simple)
+        windows_exp = [5,8,13]
+        mdf.exp_moving_averages(windows_exp, colours)
         
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots(figsize=(10,6))
+
+
 
         # set x,y points, and show as scatterplot
         x = mdf.data['date']
@@ -114,9 +113,9 @@ class MyTabView(ctk.CTkTabview):
         ax.scatter(x,y,label='Closing Prices', color='blue', marker='.')
 
         # plot line graphs for each moving average and their label/legends
-        for period in windows: 
+        for period in windows_simple: 
             ax.plot(x, mdf.data[f'{period} day SMA'], label = f'{period} day SMA')
-        for period in windows2: 
+        for period in windows_exp: 
             ax.plot(x, mdf.data[f'{period} day EMA'], label = f'{period} day EMA')
 
         fig.tight_layout()
