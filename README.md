@@ -21,7 +21,7 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [ ] 09/06 - add options for user input of date and symbol. Could do as toplevel window? 
 
-- [ ] 09/08 ON HIATUS - add testing function to test moving average calculations
+- [x] 09/08 ON HIATUS - add testing function to test moving average calculations
 
 - [x] 09/10 - add EMAs
 
@@ -32,5 +32,7 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 - [x] 10/05 - make new tab that gives the explanation of summary 
 
 - [ ] 10/05 - properly fill in Menu tab with descriptions of app and possibly buttons as shortcuts to tabs
+
+- [ ] 10/13 - customize graph colours with palettes
 
 
