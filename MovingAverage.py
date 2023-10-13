@@ -65,6 +65,7 @@ class MovingAverage:
                 # create a new column representing the moving averages (based off closing price) for each period value in windows
                 self.data[f'{window} day SMA'] = self.data['close'].rolling(window).mean()  
 
+
                 # NOTE: CALLING METHODS FROM ANOTHER METHOD WITHIN SHARED CLASS NEEDS SELF.METHOD()
                 #self.test_simple_ma(window)   
 
