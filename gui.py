@@ -12,9 +12,17 @@ class App(ctk.CTk):
     '''
     the main class to initiate and run the actual application. 
     derives functionalities from parent method CTk
-
+    
     '''
-    def __init__(self, sd, td):
+    def __init__(self, sd, td, inputsymbol):
+        ''' 
+        initialization for App class
+
+        inputs
+            startD: string representing start point date of data
+            todayD: datetime representing current date
+            symbol: string representing stock 
+        '''
         super().__init__()
 
         # configure the grid system
@@ -30,22 +38,26 @@ class App(ctk.CTk):
         
         
         # Create the Tabview WIDGET as the main display of the app. 
-        self.tab_view = MyTabView(master=self, width=1000, height=850, startD=sd, todayD=td)    # can enter arguments for width/length of tab
+        self.tab_view = MyTabView(master=self, width=1000, height=850, startD=sd, todayD=td, symbol=inputsymbol)    # can enter arguments for width/length of tab
         self.tab_view.grid(row=0, column=0, padx=20, pady=20)
 
 
 class MyTabView(ctk.CTkTabview):
-    def __init__(self, master, startD, todayD, **kwargs):
+    def __init__(self, master, startD, todayD, symbol, **kwargs):
         '''
         initializes and sets up the tabs for the tabview widget
 
         inputs: 
             master: 
             kwargs: 
+            startD: string representing start point date of data
+            todayD: datetime representing current date
+            symbol: string representing stock 
         '''
         super().__init__(master, **kwargs)
         self.startD = startD
         self.todayD = todayD
+        self.symbol = symbol
         # Tab creation with .add
         self.add("Menu")
         self.add("Graphs")
@@ -98,7 +110,7 @@ class MyTabView(ctk.CTkTabview):
 
         # retreives data and prepares it according to MovingAverage.py
         mdf = MA(API_KEY)
-        mdf.retrieve_data(self.startD, self.todayD, 'NVDA')
+        mdf.retrieve_data(self.startD, self.todayD, self.symbol)
         mdf.prepare_data()
 
         # set desired windows and use them to create new moving average columns in the data
@@ -189,5 +201,5 @@ If the price is consistently above both the SMAs and EMAs, it's a strong bullish
 
 
 # running the app
-app = App('2021-01-01', pd.Timestamp.today().date())
+app = App('2022-01-01', pd.Timestamp.today().date(), inputsymbol='NVDA')
 app.mainloop()
