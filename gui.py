@@ -107,8 +107,8 @@ class MyTabView(ctk.CTkTabview):
 
         cmap_simple = plt.get_cmap('GnBu')  
         cmap_exp = plt.get_cmap('YlOrRd')
-        colours_simple = [cmap_simple(0.1*x) for x in range(1,5)] 
-        colours_exp =[cmap_exp(0.1*x) for x in range(1,5)]
+        colours_simple = [cmap_simple(0.1*x) for x in range(3,10,3)]     # choose cmap___(0.3, 0.6, 0.9) 
+        colours_exp =[cmap_exp(0.1*x) for x in range(3,10,3)]
 
         # set x,y points, and show as scatterplot
         x = mdf.data['date']
