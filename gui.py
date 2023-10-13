@@ -100,12 +100,15 @@ class MyTabView(ctk.CTkTabview):
         windows_simple = [20,50,100]   # 100 and 200 are options as well idk
         mdf.simple_moving_averages(windows_simple)
         windows_exp = [5,8,13]
-        mdf.exp_moving_averages(windows_exp, colours)
+        mdf.exp_moving_averages(windows_exp)
         
         # creating a scatterplot of closing prices
         fig, ax = plt.subplots(figsize=(10,6))
 
-
+        cmap_simple = plt.get_cmap('GnBu')  
+        cmap_exp = plt.get_cmap('YlOrRd')
+        colours_simple = [cmap_simple(0.1*x) for x in range(1,5)] 
+        colours_exp =[cmap_exp(0.1*x) for x in range(1,5)]
 
         # set x,y points, and show as scatterplot
         x = mdf.data['date']
@@ -113,10 +116,10 @@ class MyTabView(ctk.CTkTabview):
         ax.scatter(x,y,label='Closing Prices', color='blue', marker='.')
 
         # plot line graphs for each moving average and their label/legends
-        for period in windows_simple: 
-            ax.plot(x, mdf.data[f'{period} day SMA'], label = f'{period} day SMA')
-        for period in windows_exp: 
-            ax.plot(x, mdf.data[f'{period} day EMA'], label = f'{period} day EMA')
+        for colour, period in enumerate(windows_simple): 
+            ax.plot(x, mdf.data[f'{period} day SMA'], label = f'{period} day SMA', color = colours_simple[colour])
+        for colour, period in enumerate(windows_exp): 
+            ax.plot(x, mdf.data[f'{period} day EMA'], label = f'{period} day EMA', color = colours_exp[colour])
 
         fig.tight_layout()
         ax.legend(loc='upper left')  # Position the legend outside the plot for clarity
