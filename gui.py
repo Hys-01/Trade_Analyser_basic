@@ -82,7 +82,7 @@ class MyTabView(ctk.CTkTabview):
         self.label = ctk.CTkLabel(master=self.tab("Menu"))
         self.label.configure(text="MAIN MENU", padx = "550", fg_color=('#00bb7c'), font=(None,20))
         # on the grid, can pad on x or y direction
-        self.label.grid(row=0, column=1, padx=20, pady=10)
+        self.label.grid(row=0, column=0, padx=20, pady=10)
 
         datetext = f"start point: {self.startD} \n end point: {self.todayD}"
         
@@ -90,6 +90,11 @@ class MyTabView(ctk.CTkTabview):
         self.labeldates.configure(text=datetext, padx = "100", font=(None,20))
         # on the grid, can pad on x or y direction
         self.labeldates.grid(row=2, column=0, padx=20, pady=10)
+
+        symtext = f"stock symbol: {self.symbol}"
+        self.symbol_label = ctk.CTkLabel(master = self.tab('Menu'))
+        self.symbol_label.configure(text = symtext, padx = "100", font=(None,20))
+        self.symbol_label.grid(row=4, column=0, padx=20, pady=10)
 
 
 
