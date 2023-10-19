@@ -163,14 +163,14 @@ class MyTabView(ctk.CTkTabview):
     def tabSummary(self): 
         good1, good2, good3 = 0,0,0
         aa = self.windows_simple   # placeholder variable
-        if self.data[f'{aa[0]} day SMA'][-1] > self.data[f'{aa[1]} day SMA'][-1]:   # if 20 SMA > 50 SMA  
+        if self.data[f'{aa[0]} day SMA'].iloc[-1] > self.data[f'{aa[1]} day SMA'].iloc[-1]:   # if 20 SMA > 50 SMA  
             good1 =  1
         
-        if self.data[f'{aa[1]} day SMA'][-1] > self.data[f'{aa[2]} day SMA'][-1]: 
+        if self.data[f'{aa[1]} day SMA'].iloc[-1] > self.data[f'{aa[2]} day SMA'].iloc[-1]: 
             good2 = 1 
 
         bb = self.windows_exp
-        if self.data[f'{bb[2]} day SMA'][-1] > self.data[f'{aa[0]} day SMA'][-1]: # if 13 day EMA > 20 SMA
+        if self.data[f'{bb[2]} day EMA'].iloc[-1] > self.data[f'{aa[0]} day SMA'].iloc[-1]: # if 13 day EMA > 20 SMA
             good3 = 1 
 
         summm = good1 + good2 + good3
@@ -182,6 +182,14 @@ class MyTabView(ctk.CTkTabview):
             advicetxt = 'SELL. SELL'
         if summm == 1: 
             advicetxt = 'Highly recommend to sell. '
+
+        self.label_advice = ctk.CTkLabel(master=self.tab("Summary"))
+        self.label_advice.configure(text=advicetxt)
+        # on the grid, can pad on x or y direction
+        self.label_advice.grid(row=0, column=1, padx=20, pady=10)
+
+
+        
 
         
 
