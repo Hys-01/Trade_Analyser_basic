@@ -161,18 +161,29 @@ class MyTabView(ctk.CTkTabview):
         canvas_widget.pack(fill=ctk.BOTH, expand=True)
     
     def tabSummary(self): 
-        good1, good2, good3 = None, None, None
+        good1, good2, good3 = 0,0,0
         aa = self.windows_simple   # placeholder variable
         if self.data[f'{aa[0]} day SMA'][-1] > self.data[f'{aa[1]} day SMA'][-1]:   # if 20 SMA > 50 SMA  
-            good1 = True 
+            good1 =  1
         
         if self.data[f'{aa[1]} day SMA'][-1] > self.data[f'{aa[2]} day SMA'][-1]: 
-            good2 = True 
+            good2 = 1 
 
         bb = self.windows_exp
         if self.data[f'{bb[2]} day SMA'][-1] > self.data[f'{aa[0]} day SMA'][-1]: # if 13 day EMA > 20 SMA
-            good3 = True 
-            
+            good3 = 1 
+
+        summm = good1 + good2 + good3
+        if summm == 2: 
+            advicetxt = 'Optimistic trends, watch out for future'
+        if summm == 3: 
+            advicetxt = 'BUY! BUY IMMEDIATELY!'
+        if summm == 0: 
+            advicetxt = 'SELL. SELL'
+        if summm == 1: 
+            advicetxt = 'Highly recommend to sell. '
+
+        
 
 
     def tabSummaryS(self): 
