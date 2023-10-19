@@ -71,7 +71,7 @@ class MyTabView(ctk.CTkTabview):
         mdf.exp_moving_averages(self.windows_exp)
 
         self.data = mdf.data
-        
+
         # Tab creation with .add
         self.add("Menu")
         self.add("Graphs")
@@ -161,7 +161,19 @@ class MyTabView(ctk.CTkTabview):
         canvas_widget.pack(fill=ctk.BOTH, expand=True)
     
     def tabSummary(self): 
-        pass 
+        good1, good2, good3 = None, None, None
+        aa = self.windows_simple   # placeholder variable
+        if self.data[f'{aa[0]} day SMA'][-1] > self.data[f'{aa[1]} day SMA'][-1]:   # if 20 SMA > 50 SMA  
+            good1 = True 
+        
+        if self.data[f'{aa[1]} day SMA'][-1] > self.data[f'{aa[2]} day SMA'][-1]: 
+            good2 = True 
+
+        bb = self.windows_exp
+        if self.data[f'{bb[2]} day SMA'][-1] > self.data[f'{aa[0]} day SMA'][-1]: # if 13 day EMA > 20 SMA
+            good3 = True 
+            
+
 
     def tabSummaryS(self): 
         '''
