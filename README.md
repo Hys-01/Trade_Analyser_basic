@@ -14,7 +14,7 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 
 - [x] 08/25 - Graph each of the mavg out along with actual closing prices
-- [ ] possibly interpret and advise user baesd on these
+- [x] possibly interpret and advise user baesd on these
 
 - [x] 08/27 - replace the terminal input setup with a proper gui app
 
@@ -28,12 +28,12 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [x] 09/10 - add testing to ensure data types are righjt
 
-- [ ] 10/05 - make new tab that suggests when to buy/sell based on certain 'crossings' of SMAs and EMAs
+- [x] 10/05 - make new tab that suggests when to buy/sell based on certain 'crossings' of SMAs and EMAs
 
 - [x] 10/05 - make new tab that gives the explanation of summary 
 
 - [ ] 10/05 - properly fill in Menu tab with descriptions of app and possibly buttons as shortcuts to tabs
 
-- [ ] 10/13 - customize graph colours with palettes
+- [x] 10/13 - customize graph colours with palettes
 
 
