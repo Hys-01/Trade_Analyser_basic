@@ -239,11 +239,3 @@ If the price is consistently above both the SMAs and EMAs, it's a strong bullish
         self.label.configure(text=txt)
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=1, padx=20, pady=10)
-
-        
-        
-
-
-# running the app
-app = App('2022-01-01', pd.Timestamp.today().date(), inputsymbol='NVDA')
-app.mainloop()
