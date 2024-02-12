@@ -82,7 +82,7 @@ class MovingAverage:
                 # create a new column representing the EMA for each period value in windows
                 self.data[f'{window} day EMA'] = self.data['close'].ewm(span=window, adjust=False).mean()
 
-
+    # TODO - doubt this will be needed but try to insert it into simple_ma() function anyway
     def test_prepare(self):
         try:
             # check the data type of the date column, ensure it is datetime not object

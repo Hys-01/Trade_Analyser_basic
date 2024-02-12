@@ -96,17 +96,19 @@ class MyTabView(ctk.CTkTabview):
         Creates more labels showing the start and end dates used for the graphs
 
         '''
+        # a decorative label for the title of the tab
         self.label = ctk.CTkLabel(master=self.tab("Menu"))
         self.label.configure(text="MAIN MENU", padx = "550", fg_color=('#00bb7c'), font=(None,20))
         # on the grid, can pad on x or y direction
         self.label.grid(row=0, column=0, padx=20, pady=10)
 
+        # the start and end points of time series used for the graphs, on separate lines
         datetext = f"start date: {self.startD} \n end date: {self.todayD}"
         self.labeldates = ctk.CTkLabel(master=self.tab("Menu"))
         self.labeldates.configure(text=datetext, padx = "100", font=(None,20))
-        # on the grid, can pad on x or y direction
         self.labeldates.grid(row=2, column=0, padx=20, pady=10)
 
+        # the nasdaq symbol and name, in separate lines
         symtext = f"NASDAQ: {self.symbol} \n Company: {'NVIDIA'}"
         self.symbol_label = ctk.CTkLabel(master = self.tab('Menu'))
         self.symbol_label.configure(text = symtext, padx = "100", font=(None,20))

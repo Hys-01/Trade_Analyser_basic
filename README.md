@@ -36,4 +36,6 @@ Python class MovingAverage gets the moving averages for a chosen SYMBOL based on
 
 - [x] 10/13 - customize graph colours with palettes
 
+- [ ] 02/12 - potential usage of multiple linreg (more complex ML will need to wait)
+
 
