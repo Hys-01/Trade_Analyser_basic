@@ -10,3 +10,8 @@ Version Control for Important Files: If config.py contains non-sensitive default
 
 
 or BACKUP!! BACKUP SUCH FILES ELSEWHERE.
+
+
+
+
+edit 12/02/2024 10:31pm config file has been moved to personal oneDrive
